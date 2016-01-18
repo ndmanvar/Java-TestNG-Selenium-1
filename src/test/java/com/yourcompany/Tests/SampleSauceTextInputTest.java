@@ -49,34 +49,4 @@ public class SampleSauceTextInputTest extends SampleSauceTestBase {
         assertEquals(page.getEmailText(), emailInputText);
 
     }
-
-    /**
-     * Runs a simple test verifying if the comment input is functional.
-     * @throws InvalidElementStateException
-     */
-    @org.testng.annotations.Test(dataProvider = "hardCodedBrowsers")
-    public void verifyCommentInputTest(String browser, String version, String os, Method method)
-            throws MalformedURLException, InvalidElementStateException, UnexpectedException {
-        String commentInputText = UUID.randomUUID().toString();
-
-        WebDriver driver = createDriver(browser, version, os, method.getName());
-
-        driver.get("https://saucelabs.com/test/guinea-pig");
-
-        // Navigate to the page
-        GuineaPigPage page = GuineaPigPage.getPage(driver);
-
-        /*
-         enterCommentText page is an exposed "service",
-             which interacts with the email input field element by sending text to it.
-        */
-        page.enterCommentText(commentInputText);
-
-        /*
-         Assertions should be part of test and not part of Page object.
-         Each test should be verifying one piece of functionality (atomic testing)
-        */
-        assertEquals(commentInputText, page.getCommentText());
-
-    }
 }
